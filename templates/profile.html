@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="profile">
+    <img src="{{ url_for('static', filename=user.profile_image) }}" alt="Profile Image" style="float:left; margin-right: 20px;">
+    <h1>{{ user.username }}</h1>
+    <h2>Uploaded Images</h2>
+    <div class="gallery">
+        {% for image in user.images %}
+            <a href="{{ url_for('static', filename=image.filename) }}">
+                <img src="{{ url_for('static', filename=image.filename) }}" alt="Image">
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

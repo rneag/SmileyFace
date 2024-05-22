@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="top">
+        <div class="containerTop">
+            <div class="row">
+                <div class="col-md-6" id="Logo">
+                    <a href="{{ url_for('index') }}">SmileyFace</a>
+                </div>
+                <div class="col-md-6">
+                    <ul class="navigation">
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        {% if 'logged_in' in session %}
+                            <li><a href="{{ url_for('upload') }}">Upload</a></li>
+                            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                            <li><a href="{{ url_for('games')    }}">Games</a></li>
+                            
+                        {% else %}
+                            <li><a href="{{ url_for('login') }}">Login</a></li>
+                             <li><a href="{{ url_for('register') }}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+    <div class="bottom">
+        <div class="containerBottom">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    &copy; {{ current_year }} SmileyFace
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

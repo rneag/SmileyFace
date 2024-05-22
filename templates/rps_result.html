@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors - Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="top">
+        <div class="containerTop">
+            <div class="row">
+                <div class="col-md-6" id="Logo">
+                    <a href="{{ url_for('index') }}">SmileyFace</a>
+                </div>
+                <div class="col-md-6 text-right">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="text-align: center; margin-top: 50px;">
+        <h1>Rock Paper Scissors</h1>
+        <div>
+            <p>You chose:</p>
+            <img src="{{ images[user_choice] }}" alt="{{ user_choice }}" width="100">
+        </div>
+        <div>
+            <p>Computer chose:</p>
+            <img src="{{ images[computer_choice] }}" alt="{{ computer_choice }}" width="100">
+        </div>
+        <br>
+        <h2>{{ result }}</h2>
+        <a href="{{ url_for('rps_game') }}" class="btn btn-success">Play Again</a>
+    </div>
+</body>
+</html>

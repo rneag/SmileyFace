@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="top">
+        <div class="containerTop">
+            <div class="row">
+                <div class="col-md-6" id="Logo">
+                    <a href="{{ url_for('index') }}">SmileyFace</a>
+                </div>
+                <div class="col-md-6 text-right">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="text-align: center; margin-top: 50px;">
+        <h1>Rock Paper Scissors</h1>
+        <form method="POST" action="{{ url_for('rps_game') }}">
+            <label for="choice">Choose: </label>
+            <div>
+                <input type="radio" id="rock" name="choice" value="rock" required>
+                <label for="rock">
+                    <img src="{{ images['rock'] }}" alt="Rock" width="100">
+                </label>
+                <input type="radio" id="paper" name="choice" value="paper" required>
+                <label for="paper">
+                    <img src="{{ images['paper'] }}" alt="Paper" width="100">
+                </label>
+                <input type="radio" id="scissors" name="choice" value="scissors" required>
+                <label for="scissors">
+                    <img src="{{ images['scissors'] }}" alt="Scissors" width="100">
+                </label>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success">Play</button>
+        </form>
+    </div>
+</body>
+</html>

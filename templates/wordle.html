@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="text-align: center; margin-top: 50px;">
+    <h1>Wordle Game</h1>
+    <form method="POST" action="{{ url_for('wordle') }}">
+        <div class="form-group">
+            <label for="guess">Enter your guess:</label>
+            <input type="text" id="guess" name="guess" maxlength="5" required class="form-control" style="display: inline-block; width: auto;">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+        
+        <br>
+        <p>HINT: all the words are fruits</p>
+    </form>
+    {% if result %}
+        <div class="alert alert-info" style="margin-top: 20px;">
+            {{ result }}
+        </div>
+    {% endif %}
+    {% if feedback %}
+        <div class="alert alert-info" style="margin-top: 20px;">
+            <ul>
+                {% for f in feedback %}
+                    <li>{{ f }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <div style="margin-top: 20px;">
+        <p>Attempts left: {{ attempts_left }}</p>
+        <p>Previous guesses:</p>
+        <ul>
+            {% for attempt in attempts %}
+                <li>{{ attempt }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+     <a href="{{ url_for('reset') }}" class="btn custom-btn">New Game</a>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Photo Gallery</h1>
+{% for category, thumbnails in categories.items() %}
+    <h2>{{ category }}
+        {% if 'logged_in' in session %}
+        <form method="POST" action="{{ url_for('delete_album', category=category) }}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this album?');">
+            <button type="submit" class="btn btn-danger btn-sm">Delete Album</button>
+        </form>
+        {% endif %}
+    </h2>
+    <div class="gallery">
+        {% for thumb in thumbnails %}
+            <div style="position:relative; display:inline-block;">
+                <a href="{{ url_for('static', filename=thumb.split('static/')[-1].replace('.thumb', '').replace('\\','/')) }}">
+                    <img src="{{ url_for('static', filename=thumb.split('static/')[-1].replace('\\','/')) }}" alt="Image">
+                </a>
+                {% if 'logged_in' in session %}
+                <form method="POST" action="{{ url_for('delete_image', category=category, image=thumb.split('/')[-1].replace('.thumb', '')) }}" style="position:absolute; top:0; right:0;" onsubmit="return confirm('Are you sure you want to delete this image?');">
+                    <button type="submit" class="btn btn-danger btn-sm">X</button>
+                </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+{% endblock %}

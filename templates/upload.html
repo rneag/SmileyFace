@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="upload">
+    <div class="rows">
+    <div class="col-md-12">
+    <a id="top" href="{{ url_for('index') }}">Upload Image</a>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Image Name (optional)">
+        <input type="text" name="category" placeholder="Category" required>
+        <input type="file" name="image" required>
+        <button type="submit" class="btn btn-success">Upload</button>
+    </form>
+</div>
+</div>
+{% endblock %}
